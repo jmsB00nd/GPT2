@@ -51,4 +51,24 @@ with torch.no_grad():
     
 print("Training loss:", train_loss)
 print("Validation loss:", val_loss)
- 
+
+
+# load and save 
+optimizer = torch.optim.AdamW(model.parameters(), lr=5e-4, weight_decay=0.1)
+
+torch.save({
+"model_state_dict": model.state_dict(),
+"optimizer_state_dict": optimizer.state_dict(),
+},
+"model_and_optimizer.pth"
+)
+
+model.load_state_dict(torch.load("model.pth", map_location=device)) 
+model.eval()
+
+checkpoint = torch.load("model_and_optimizer.pth", map_location=device)
+model = GPTModel(GPT_CONFIG_124M)
+model.load_state_dict(checkpoint["model_state_dict"])
+optimizer = torch.optim.AdamW(model.parameters(), lr=5e-4, weight_decay=0.1)
+optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+model.train();
