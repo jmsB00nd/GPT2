@@ -1,1 +1,1 @@
-By following the book Building LLMs from Scratch, I implemented and explored the GPT-2 architecture step by step. The process involved understanding key concepts such as tokenization, attention mechanisms, transformer blocks, and training dynamics. Through hands-on coding, I built a simplified yet functional version of GPT-2, gaining a deeper understanding of how large language models are structured and how they generate text.
+
